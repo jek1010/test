@@ -43,10 +43,10 @@ def to_do_logic(
     files: list = list()
     
     # 생략가능 ----------------------------- (1)
-    logging.basicConfig(filename=f'{out_dir}{os.sep}log_file.txt', level=logging.DEBUG,
-                    format="[ %(asctime)s | %(levelname)s ] %(message)s", force=True,
-                    datefmt="%Y-%m-%d %H:%M:%S")
-    files.append("log_file.txt")
+    # logging.basicConfig(filename=f'{out_dir}{os.sep}log_file.txt', level=logging.DEBUG,
+    #                 format="[ %(asctime)s | %(levelname)s ] %(message)s", force=True,
+    #                 datefmt="%Y-%m-%d %H:%M:%S")
+    # files.append("log_file.txt")
     # -------------------------------------- (1)
 
     logging.info("=================================================2024074_Test===================================================")
