@@ -88,7 +88,8 @@ def to_do_logic(
     # google-chrome-stable 설치안되어 있는 경우, 설치
     if not check_installed('google-chrome-stable'):
         logging.info("Start : Download chrome")
-        download_process = subprocess.Popen(['wget', f'https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_{chrome_version}_amd64.deb'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)        download_output, download_error = download_process.communicate()
+        download_process = subprocess.Popen(['wget', f'https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_{chrome_version}_amd64.deb'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)        
+        download_output, download_error = download_process.communicate()
         logging.info("[download_output] ---- ")
         logging.info(download_output)
         logging.info("[download_error] --- ")
