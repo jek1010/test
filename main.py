@@ -83,11 +83,12 @@ def to_do_logic(
     else:
         logging.info("wget is already installed")
 
+    chrome_version = "124.0.6367.60-1"
+        
     # google-chrome-stable 설치안되어 있는 경우, 설치
     if not check_installed('google-chrome-stable'):
         logging.info("Start : Download chrome")
-        download_process = subprocess.Popen(['wget', 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        download_output, download_error = download_process.communicate()
+        download_process = subprocess.Popen(['wget', f'https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_{chrome_version}_amd64.deb'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)        download_output, download_error = download_process.communicate()
         logging.info("[download_output] ---- ")
         logging.info(download_output)
         logging.info("[download_error] --- ")
@@ -95,15 +96,15 @@ def to_do_logic(
         logging.info("Finish : Download chrome")
     else:
         logging.info("chrome is already installed")
-    
-    logging.info("Start : Install chrome")
-    install_process = subprocess.Popen(['apt', '-y', 'install', './google-chrome-stable_current_amd64.deb'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    install_output, install_error = install_process.communicate()
-    logging.info("[install_output] ---- ")
-    logging.info(install_output)
-    logging.info("[install_error] --- ")
-    logging.info(install_error)
-    logging.info("Finish : Install chrome")
+
+    if not check_installed('google-chrome-stable'):
+        logging.info("Start : Install chrome")
+        install_process = subprocess.Popen(['apt', 'install', '-y', f'./google-chrome-stable_{chrome_version}_amd64.deb'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)        install_output, install_error = install_process.communicate()
+        logging.info("[install_output] ---- ")
+        logging.info(install_output)
+        logging.info("[install_error] --- ")
+        logging.info(install_error)
+        logging.info("Finish : Install chrome")
 
     logging.info("Start : Install chrome driver")
     service = ChromeService(executable_path=ChromeDriverManager().install()) # 최신드라이버 설치
