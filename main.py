@@ -100,7 +100,8 @@ def to_do_logic(
 
     if not check_installed('google-chrome-stable'):
         logging.info("Start : Install chrome")
-        install_process = subprocess.Popen(['apt', 'install', '-y', f'./google-chrome-stable_{chrome_version}_amd64.deb'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)        install_output, install_error = install_process.communicate()
+        install_process = subprocess.Popen(['apt', 'install', '-y', f'./google-chrome-stable_{chrome_version}_amd64.deb'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)        
+        install_output, install_error = install_process.communicate()
         logging.info("[install_output] ---- ")
         logging.info(install_output)
         logging.info("[install_error] --- ")
